@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Leve+ — Sua jornada com GLP-1</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#FAFAF8;--white:#fff;--text:#1A1A1A;--muted:#6B6B6B;--border:#E8E8E4;
+  --mint:#3DBE7A;--mint-light:#E8F8F0;--mint-mid:#B6E8CE;--green-dark:#1C6E42;--green-deeper:#134D2E;
+  --amber:#F59E0B;--amber-light:#FEF3C7;
+  --pro:#1E3A5F;--pro-light:#EEF4FF;--pro-mid:#C7D9F5;--pro-accent:#3B7DD8;
+  --nude:#F7F2EC;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);max-width:430px;margin:0 auto;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+
+/* URGENCY */
+.urgency{background:var(--amber);padding:9px 20px;text-align:center;}
+.urgency p{color:#78350F;font-size:12px;font-weight:700;margin:0;}
+
+/* NAV PILLS */
+.nav-pills{background:var(--white);border-bottom:1px solid var(--border);padding:10px 16px;display:flex;gap:8px;position:sticky;top:0;z-index:90;}
+.pill{flex:1;text-align:center;padding:9px 6px;border-radius:10px;font-size:12px;font-weight:700;cursor:pointer;transition:all .18s;border:1.5px solid var(--border);color:var(--muted);background:var(--bg);}
+.pill.pac{border-color:var(--mint);color:var(--green-dark);background:var(--mint-light);}
+.pill.pro{border-color:var(--pro-accent);color:var(--pro);background:var(--pro-light);}
+
+/* HERO */
+.hero{background:var(--white);padding:32px 22px 36px;text-align:center;border-bottom:1px solid var(--border);}
+.hero-eyebrow{display:flex;justify-content:center;gap:8px;margin-bottom:18px;flex-wrap:wrap;}
+.badge{font-size:11px;font-weight:800;letter-spacing:.5px;padding:5px 13px;border-radius:99px;display:inline-block;}
+.badge-green{background:var(--mint-light);color:var(--green-dark);}
+.badge-blue{background:var(--pro-light);color:var(--pro);}
+.hero h1{font-size:29px;font-weight:900;line-height:1.18;letter-spacing:-1px;color:var(--text);margin-bottom:13px;}
+.hero h1 em{font-style:normal;color:var(--mint);}
+.hero-sub{font-size:14px;color:var(--muted);line-height:1.65;margin-bottom:26px;}
+.hero-dual{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:22px;}
+.hero-card{border-radius:14px;padding:14px 12px;text-align:left;border:1.5px solid;}
+.hero-card.pac{background:var(--mint-light);border-color:var(--mint-mid);}
+.hero-card.pro{background:var(--pro-light);border-color:var(--pro-mid);}
+.hero-card .hc-label{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px;}
+.pac .hc-label{color:var(--green-dark);}
+.pro .hc-label{color:var(--pro);}
+.hero-card p{font-size:12px;line-height:1.5;margin:0;}
+.pac p{color:var(--green-dark);}
+.pro p{color:var(--pro);}
+.btn-cta{background:var(--mint);color:#fff;font-size:15px;font-weight:800;padding:16px 28px;border-radius:13px;border:none;cursor:pointer;width:100%;transition:background .15s,transform .1s;box-shadow:0 4px 18px rgba(61,190,122,.3);}
+.btn-cta:hover{background:#32ad6a;transform:translateY(-1px);}
+.hero-micro{font-size:12px;color:var(--muted);margin-top:9px;}
+.hero-trust{display:flex;margin-top:26px;border-top:1px solid var(--border);padding-top:18px;}
+.trust-item{flex:1;text-align:center;padding:0 4px;}
+.trust-num{font-size:19px;font-weight:900;color:var(--text);display:block;}
+.trust-label{font-size:10px;color:var(--muted);line-height:1.4;display:block;margin-top:2px;}
+.trust-sep{width:1px;background:var(--border);}
+
+/* DIVIDER */
+.section-divider{height:1px;background:var(--border);margin:0;}
+
+/* ── PACIENTE ── */
+.pac-section{background:var(--white);padding:36px 20px;}
+.pac-section .section-tag{color:var(--mint);font-size:11px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;margin-bottom:8px;}
+.section-title{font-size:22px;font-weight:900;line-height:1.2;letter-spacing:-.5px;margin-bottom:9px;}
+.section-sub{font-size:14px;color:var(--muted);line-height:1.65;}
+.pain-list{margin-top:18px;display:flex;flex-direction:column;gap:9px;}
+.pain-item{display:flex;align-items:flex-start;gap:11px;background:var(--bg);border-radius:13px;padding:13px 14px;border:1px solid var(--border);}
+.pain-icon{font-size:19px;flex-shrink:0;margin-top:1px;}
+.pain-item p{font-size:13px;color:var(--text);line-height:1.55;margin:0;}
+.pain-item p strong{color:var(--green-dark);}
+
+/* FEATURES GRID */
+.feat-bg{background:var(--nude);padding:36px 20px;}
+.features-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:18px;}
+.feat-card{background:var(--white);border-radius:14px;padding:14px 12px;border:1px solid var(--border);}
+.feat-card .ico{font-size:22px;margin-bottom:7px;display:block;}
+.feat-card h4{font-size:13px;font-weight:800;color:var(--text);margin:0 0 3px;}
+.feat-card p{font-size:12px;color:var(--muted);margin:0;line-height:1.5;}
+
+/* PHONE MOCKUP */
+.mockup-section{background:var(--white);padding:32px 20px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);display:flex;justify-content:center;}
+.phone-frame{width:190px;background:#fff;border-radius:28px;border:1.5px solid var(--border);overflow:hidden;box-shadow:0 10px 36px rgba(0,0,0,.09);display:flex;flex-direction:column;}
+.ps-notch{width:50px;height:5px;background:var(--border);border-radius:99px;margin:7px auto 0;}
+.phone-screen{flex:1;background:var(--bg);padding:7px 6px 6px;display:flex;flex-direction:column;gap:5px;}
+.ps-header{background:linear-gradient(135deg,var(--green-deeper),var(--green-dark));border-radius:12px;padding:8px 10px;color:#fff;}
+.ps-header p{font-size:7.5px;opacity:.75;margin:0 0 2px;}
+.ps-header h3{font-size:11px;font-weight:900;margin:0;}
+.ps-card{background:#fff;border-radius:9px;padding:7px 9px;border:1px solid var(--border);}
+.ps-label{font-size:7px;color:var(--muted);margin:0 0 4px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;}
+.ps-bar-bg{background:#EEF0EC;border-radius:99px;height:5px;overflow:hidden;margin-bottom:2px;}
+.ps-bar-fill{height:100%;border-radius:99px;}
+.ps-row{display:flex;gap:5px;}
+.ps-mini{flex:1;background:#fff;border-radius:9px;padding:6px 7px;border:1px solid var(--border);}
+.ps-mini h4{font-size:9px;font-weight:800;color:var(--text);margin:0;line-height:1.3;}
+.ps-vault{background:var(--green-deeper);border-radius:9px;padding:7px 9px;display:flex;align-items:center;justify-content:space-between;}
+.ps-vault p{font-size:7.5px;color:rgba(255,255,255,.8);margin:0;font-weight:700;}
+.ps-nav{background:#fff;border-top:1px solid var(--border);padding:5px 2px 5px;display:flex;justify-content:space-around;}
+.ps-nav-item{text-align:center;}
+.ps-nav-item span{font-size:6px;color:var(--muted);display:block;margin-top:1px;}
+.ps-nav-item.active span{color:var(--green-dark);font-weight:800;}
+
+/* TESTIMONIALS */
+.proof-bg{background:var(--bg);padding:36px 20px;border-top:1px solid var(--border);}
+.proof-bg .section-tag{color:var(--mint);}
+.metrics-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:18px 0;}
+.metric-box{background:var(--mint-light);border-radius:13px;padding:13px 6px;text-align:center;}
+.metric-box strong{display:block;font-size:20px;font-weight:900;color:var(--green-dark);line-height:1;}
+.metric-box span{font-size:10px;color:var(--green-dark);opacity:.75;line-height:1.4;display:block;margin-top:3px;}
+.testimonials{display:flex;flex-direction:column;gap:9px;}
+.testi{background:var(--white);border-radius:14px;padding:15px;border:1px solid var(--border);}
+.stars{font-size:11px;letter-spacing:1px;margin-bottom:7px;}
+.testi-text{font-size:13px;color:var(--text);line-height:1.65;margin:0 0 11px;}
+.testi-author{display:flex;align-items:center;gap:9px;}
+.testi-avatar{width:30px;height:30px;border-radius:50%;background:var(--mint-light);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:var(--green-dark);flex-shrink:0;}
+.testi-info p{font-size:12px;font-weight:700;color:var(--text);margin:0;}
+.testi-info span{font-size:11px;color:var(--muted);}
+
+/* ── PROFISSIONAL ── */
+.pro-hero{background:var(--pro);padding:36px 20px;text-align:center;}
+.pro-hero .section-tag{color:#93C5FD;font-size:11px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;margin-bottom:10px;}
+.pro-hero h2{color:#fff;font-size:24px;font-weight:900;line-height:1.2;letter-spacing:-.5px;margin-bottom:10px;}
+.pro-hero p{color:rgba(255,255,255,.72);font-size:14px;line-height:1.65;margin-bottom:0;}
+
+/* PDF SHOWCASE */
+.pdf-section{background:var(--pro-light);padding:36px 20px;border-bottom:3px solid var(--pro-mid);}
+.pdf-section .section-tag{color:var(--pro-accent);}
+.pdf-section .section-title{color:var(--pro);}
+.pdf-section .section-sub{color:#4A6FA5;}
+.pdf-card{background:var(--white);border-radius:18px;border:1.5px solid var(--pro-mid);overflow:hidden;margin-top:20px;box-shadow:0 4px 20px rgba(30,58,95,.08);}
+.pdf-card-header{background:var(--pro);padding:14px 18px;display:flex;align-items:center;gap:12px;}
+.pdf-icon-wrap{width:38px;height:38px;background:rgba(255,255,255,.15);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.pdf-card-header div p{font-size:13px;font-weight:800;color:#fff;margin:0 0 2px;}
+.pdf-card-header div span{font-size:11px;color:rgba(255,255,255,.6);}
+.pdf-body{padding:16px 18px;}
+.pdf-row{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);}
+.pdf-row:last-child{border-bottom:none;padding-bottom:0;}
+.pdf-dot{width:8px;height:8px;border-radius:50%;background:var(--pro-accent);flex-shrink:0;margin-top:4px;}
+.pdf-row p{font-size:13px;color:var(--text);line-height:1.5;margin:0;}
+.pdf-row p strong{color:var(--pro);font-weight:700;}
+.pdf-sample{background:var(--pro-light);border-radius:14px;margin:16px 18px 18px;padding:14px;border:1px dashed var(--pro-mid);}
+.pdf-sample p{font-size:11px;color:var(--pro);font-weight:700;margin:0 0 10px;text-transform:uppercase;letter-spacing:.5px;}
+.pdf-sample-row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid var(--pro-mid);}
+.pdf-sample-row:last-child{border-bottom:none;}
+.pdf-sample-row span{font-size:12px;color:#4A6FA5;}
+.pdf-sample-row strong{font-size:12px;color:var(--pro);font-weight:800;}
+
+/* PRO BENEFITS */
+.pro-benefits{background:var(--white);padding:36px 20px;border-bottom:1px solid var(--border);}
+.pro-benefits .section-tag{color:var(--pro-accent);}
+.pro-benefits .section-title{color:var(--pro);}
+.pro-grid{display:flex;flex-direction:column;gap:10px;margin-top:18px;}
+.pro-benefit-item{display:flex;align-items:flex-start;gap:13px;background:var(--pro-light);border-radius:14px;padding:14px 15px;border:1px solid var(--pro-mid);}
+.pro-benefit-icon{font-size:22px;flex-shrink:0;}
+.pro-benefit-item h4{font-size:14px;font-weight:800;color:var(--pro);margin:0 0 3px;}
+.pro-benefit-item p{font-size:13px;color:#4A6FA5;line-height:1.5;margin:0;}
+
+/* PRO TESTIMONIALS */
+.pro-proof{background:var(--pro-light);padding:36px 20px;border-bottom:1px solid var(--pro-mid);}
+.pro-proof .section-tag{color:var(--pro-accent);}
+.pro-proof .section-title{color:var(--pro);}
+.pro-testi{background:var(--white);border-radius:14px;padding:15px;border:1px solid var(--pro-mid);margin-bottom:9px;}
+.pro-testi:last-child{margin-bottom:0;}
+.pro-testi-text{font-size:13px;color:var(--text);line-height:1.65;margin:0 0 11px;}
+.pro-testi-author{display:flex;align-items:center;gap:9px;}
+.pro-avatar{width:32px;height:32px;border-radius:50%;background:var(--pro-light);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:var(--pro);flex-shrink:0;border:1px solid var(--pro-mid);}
+.pro-testi-info p{font-size:12px;font-weight:800;color:var(--pro);margin:0;}
+.pro-testi-info span{font-size:11px;color:#4A6FA5;}
+
+/* HOW IT WORKS */
+.how-section{background:var(--white);padding:36px 20px;border-bottom:1px solid var(--border);}
+.how-section .section-tag{color:var(--pro-accent);}
+.how-section .section-title{color:var(--pro);}
+.steps{display:flex;flex-direction:column;gap:0;margin-top:20px;position:relative;}
+.step{display:flex;gap:14px;padding-bottom:22px;position:relative;}
+.step:last-child{padding-bottom:0;}
+.step-line{position:absolute;left:15px;top:32px;bottom:0;width:1.5px;background:var(--pro-mid);}
+.step:last-child .step-line{display:none;}
+.step-num{width:32px;height:32px;border-radius:50%;background:var(--pro);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;color:#fff;flex-shrink:0;}
+.step-content h4{font-size:14px;font-weight:800;color:var(--pro);margin:4px 0 4px;}
+.step-content p{font-size:13px;color:var(--muted);line-height:1.55;margin:0;}
+
+/* PRO CTA */
+.pro-cta-section{background:var(--pro);padding:36px 20px;text-align:center;}
+.pro-cta-section h2{color:#fff;font-size:22px;font-weight:900;line-height:1.25;margin-bottom:10px;letter-spacing:-.4px;}
+.pro-cta-section p{color:rgba(255,255,255,.7);font-size:14px;margin-bottom:22px;line-height:1.6;}
+.btn-pro{background:#fff;color:var(--pro);font-size:15px;font-weight:800;padding:16px 28px;border-radius:13px;border:none;cursor:pointer;width:100%;transition:background .15s;}
+.btn-pro:hover{background:#EEF4FF;}
+
+/* PRICING */
+.price-section{background:var(--nude);padding:36px 20px;}
+.price-section .section-tag{color:var(--mint);}
+.price-card{background:var(--white);border-radius:20px;padding:22px;border:2px solid var(--mint);margin-top:20px;position:relative;}
+.price-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--amber);color:#78350F;font-size:11px;font-weight:800;padding:4px 16px;border-radius:99px;white-space:nowrap;}
+.price-amount{text-align:center;margin:14px 0 18px;}
+.price-amount .from{font-size:12px;color:var(--muted);text-decoration:line-through;display:block;margin-bottom:2px;}
+.price-amount .val{font-size:42px;font-weight:900;color:var(--text);line-height:1;}
+.price-amount .mo{font-size:14px;color:var(--muted);}
+.price-amount .trial{font-size:13px;color:var(--mint);font-weight:700;display:block;margin-top:4px;}
+.price-items{display:flex;flex-direction:column;gap:8px;margin-bottom:20px;}
+.price-item{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);}
+.check{width:19px;height:19px;border-radius:50%;background:var(--mint-light);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:10px;color:var(--green-dark);}
+.check-pro{background:var(--pro-light);color:var(--pro);}
+.price-divider{height:1px;background:var(--border);margin:14px 0;}
+.price-for-label{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;}
+.price-for-label.pac{color:var(--green-dark);}
+.price-for-label.pro{color:var(--pro);}
+.price-guarantee{text-align:center;margin-top:12px;font-size:12px;color:var(--muted);}
+
+/* FAQ */
+.faq-bg{background:var(--white);padding:36px 20px;border-top:1px solid var(--border);}
+.faq-bg .section-tag{color:var(--mint);}
+.faq-list{margin-top:16px;display:flex;flex-direction:column;gap:8px;}
+.faq-item{background:var(--bg);border-radius:13px;padding:14px;border:1px solid var(--border);}
+.faq-q{font-size:13px;font-weight:800;color:var(--text);margin:0 0 5px;}
+.faq-a{font-size:13px;color:var(--muted);line-height:1.6;margin:0;}
+
+/* FINAL CTA */
+.final-cta{background:var(--green-deeper);padding:40px 22px;text-align:center;}
+.final-cta h2{color:#fff;font-size:23px;font-weight:900;line-height:1.25;margin-bottom:9px;letter-spacing:-.5px;}
+.final-cta p{color:rgba(255,255,255,.65);font-size:14px;margin-bottom:22px;line-height:1.6;}
+.btn-inv{background:#fff;color:var(--green-dark);font-size:15px;font-weight:800;padding:16px 28px;border-radius:13px;border:none;cursor:pointer;width:100%;}
+
+/* FOOTER */
+footer{padding:22px 20px 32px;text-align:center;background:var(--bg);border-top:1px solid var(--border);}
+footer p{font-size:11px;color:var(--muted);line-height:1.7;}
+footer a{color:var(--green-dark);text-decoration:none;}
+.footer-logo{font-size:15px;font-weight:900;color:var(--green-dark);margin-bottom:8px;}
+
+/* STICKY */
+.sticky-cta{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:rgba(250,250,248,.97);backdrop-filter:blur(12px);padding:10px 20px 18px;border-top:1px solid var(--border);z-index:999;display:none;}
+.sticky-cta.visible{display:block;}
+</style>
+</head>
+<body>
+
+<!-- URGENCY -->
+<div class="urgency">
+  <p>🎉 Oferta de lançamento — 7 dias grátis, depois R$ 19,90/mês</p>
+</div>
+
+<!-- NAV PILLS -->
+<div class="nav-pills">
+  <div class="pill pac" onclick="scrollTo('paciente')">🌿 Sou paciente</div>
+  <div class="pill pro" onclick="scrollTo('profissional')">🩺 Sou profissional</div>
+</div>
+
+<!-- ===== HERO UNIFICADO ===== -->
+<div class="hero">
+  <div class="hero-eyebrow">
+    <span class="badge badge-green">🌿 Para usuárias de GLP-1</span>
+    <span class="badge badge-blue">🩺 Indicado por profissionais</span>
+  </div>
+  <h1>A jornada organizada.<br>Do consultório<br>à <em>vida real.</em></h1>
+  <p class="hero-sub">Para quem usa Ozempic, Wegovy e similares — e para os profissionais que acompanham essa jornada.</p>
+  <div class="hero-dual">
+    <div class="hero-card pac">
+      <p class="hc-label">🌿 Paciente</p>
+      <p>Registre sintomas, água, proteína, medidas e fotos. Tudo num lugar só.</p>
+    </div>
+    <div class="hero-card pro">
+      <p class="hc-label">🩺 Profissional</p>
+      <p>Sua paciente chega na consulta com um relatório PDF completo e organizado.</p>
+    </div>
+  </div>
+  <button class="btn-cta" onclick="scrollToPricing()">Começar grátis por 7 dias →</button>
+  <p class="hero-micro">Sem cartão de crédito · Cancele quando quiser</p>
+  <div class="hero-trust">
+    <div class="trust-item"><span class="trust-num">+4.200</span><span class="trust-label">mulheres na jornada</span></div>
+    <div class="trust-sep"></div>
+    <div class="trust-item"><span class="trust-num">320+</span><span class="trust-label">profissionais indicam</span></div>
+    <div class="trust-sep"></div>
+    <div class="trust-item"><span class="trust-num">4.9★</span><span class="trust-label">avaliação média</span></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════
+     BLOCO PACIENTE
+════════════════════════════════ -->
+<div id="paciente">
+
+  <!-- DOR -->
+  <section class="pac-section" style="border-top:3px solid var(--mint);">
+    <p class="section-tag">🌿 Para quem usa GLP-1</p>
+    <h2 class="section-title">Usar caneta emagrecedora é mais complexo do que parece.</h2>
+    <p class="section-sub">Os sintomas mudam, o corpo responde diferente toda semana — e você precisa de um lugar para acompanhar tudo isso.</p>
+    <div class="pain-list">
+      <div class="pain-item"><span class="pain-icon">😵‍💫</span><p>Você esquece de registrar o que comeu, bebeu ou sentiu — e perde o <strong>fio da sua evolução.</strong></p></div>
+      <div class="pain-item"><span class="pain-icon">📉</span><p>A balança não reflete tudo. Você não tem como <strong>ver a evolução real</strong> em cintura, quadril e energia.</p></div>
+      <div class="pain-item"><span class="pain-icon">🤢</span><p>Náusea, constipação, falta de apetite. Você <strong>não sabe o que registrar</strong> nesses dias difíceis.</p></div>
+      <div class="pain-item"><span class="pain-icon">🔁</span><p>Todo mês você recomeça do zero — sem conseguir <strong>manter a constância</strong> dos hábitos.</p></div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="feat-bg">
+    <p class="section-tag">O que o Leve+ faz</p>
+    <h2 class="section-title">Tudo que sua jornada precisa.</h2>
+    <div class="features-grid">
+      <div class="feat-card"><span class="ico">✅</span><h4>Check-in diário</h4><p>Água, proteína, humor e sintomas em menos de 1 minuto.</p></div>
+      <div class="feat-card"><span class="ico">⚖️</span><h4>Evolução corporal</h4><p>Peso, cintura, quadril — visualize o que a balança não mostra.</p></div>
+      <div class="feat-card"><span class="ico">🔒</span><h4>Cofre de fotos</h4><p>Fotos privadas — frente, lado e costas.</p></div>
+      <div class="feat-card"><span class="ico">🍽</span><h4>Receitas GLP-1</h4><p>Alta proteína, falta de apetite, intestino — curadas pra você.</p></div>
+      <div class="feat-card"><span class="ico">🏋️</span><h4>Treinos adaptados</h4><p>Glúteos, mobilidade, caminhada e muito mais.</p></div>
+      <div class="feat-card"><span class="ico">📄</span><h4>Relatório PDF</h4><p>Envie um relatório completo para seu médico ou nutricionista.</p></div>
+    </div>
+  </section>
+
+  <!-- MOCKUP -->
+  <div class="mockup-section">
+    <div class="phone-frame">
+      <div class="ps-notch"></div>
+      <div class="phone-screen">
+        <div class="ps-header"><p>Bom dia ✨ Dia 42 da jornada</p><h3>Olá, Camila! 🌿</h3></div>
+        <div class="ps-card">
+          <p class="ps-label">📊 Hoje</p>
+          <p style="font-size:7.5px;color:var(--muted);margin:0 0 3px">Proteína — 72g / 100g</p>
+          <div class="ps-bar-bg"><div class="ps-bar-fill" style="width:72%;background:linear-gradient(90deg,#3DBE7A,#1C6E42)"></div></div>
+          <p style="font-size:7.5px;color:var(--muted);margin:4px 0 3px">Hidratação — 1.400 / 2.000ml</p>
+          <div class="ps-bar-bg"><div class="ps-bar-fill" style="width:70%;background:linear-gradient(90deg,#67d4f8,#0891b2)"></div></div>
+        </div>
+        <div class="ps-row">
+          <div class="ps-mini"><p class="ps-label">🍽 Receita</p><h4>Bowl Proteico</h4></div>
+          <div class="ps-mini"><p class="ps-label">🏋️ Treino</p><h4>Glúteos</h4></div>
+        </div>
+        <div class="ps-vault"><p>🔒 Cofre — 3 fotos</p><span>📸</span></div>
+      </div>
+      <div class="ps-nav">
+        <div class="ps-nav-item active"><span>🏠</span><span>Hoje</span></div>
+        <div class="ps-nav-item"><span>✅</span><span>Check-in</span></div>
+        <div class="ps-nav-item"><span>⚖️</span><span>Evolução</span></div>
+        <div class="ps-nav-item"><span>🌿</span><span>Bem-estar</span></div>
+        <div class="ps-nav-item"><span>👤</span><span>Perfil</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROVA SOCIAL PACIENTE -->
+  <section class="proof-bg">
+    <p class="section-tag">Quem já está na jornada</p>
+    <h2 class="section-title">Mulheres reais. Resultados reais.</h2>
+    <div class="metrics-row">
+      <div class="metric-box"><strong>+4.200</strong><span>mulheres ativas</span></div>
+      <div class="metric-box"><strong>87%</strong><span>constância após 30 dias</span></div>
+      <div class="metric-box"><strong>4.9★</strong><span>avaliação</span></div>
+    </div>
+    <div class="testimonials">
+      <div class="testi"><div class="stars">⭐⭐⭐⭐⭐</div><p class="testi-text">"Finalmente um app que entende o que é usar Ozempic. Registrei sintomas, evolução e ainda encontrei receitas pra quando não tenho apetite."</p><div class="testi-author"><div class="testi-avatar">CR</div><div class="testi-info"><p>Camila R.</p><span>Wegovy · 4 meses</span></div></div></div>
+      <div class="testi"><div class="stars">⭐⭐⭐⭐⭐</div><p class="testi-text">"O cofre de fotos me fez ver o que a balança não mostrava. Agora consigo mostrar minha evolução pra nutricionista de forma organizada."</p><div class="testi-author"><div class="testi-avatar">JS</div><div class="testi-info"><p>Juliana S.</p><span>Ozempic · 6 meses</span></div></div></div>
+    </div>
+  </section>
+
+</div><!-- /paciente -->
+
+<!-- ═══════════════════════════════
+     BLOCO PROFISSIONAL
+════════════════════════════════ -->
+<div id="profissional">
+
+  <!-- PRO HERO -->
+  <div class="pro-hero">
+    <p class="section-tag">🩺 Para profissionais de saúde</p>
+    <h2>Sua paciente chega preparada. Você atende melhor.</h2>
+    <p>O Leve+ organiza toda a jornada da sua paciente com GLP-1 — e entrega isso a você em forma de relatório, pronto para a consulta.</p>
+  </div>
+
+  <!-- PDF SHOWCASE -->
+  <section class="pdf-section">
+    <p class="section-tag">📄 Relatório de Evolução</p>
+    <h2 class="section-title">O dado que faltava na sua consulta.</h2>
+    <p class="section-sub">Sua paciente gera um PDF completo diretamente no app e te envia antes da consulta. Você chega sabendo tudo.</p>
+
+    <div class="pdf-card">
+      <div class="pdf-card-header">
+        <div class="pdf-icon-wrap">📄</div>
+        <div>
+          <p>Relatório Leve+ — Camila Rodrigues</p>
+          <span>Período: 01/05 a 31/05/2025 · Ozempic</span>
+        </div>
+      </div>
+      <div class="pdf-body">
+        <div class="pdf-row"><div class="pdf-dot"></div><p><strong>Evolução de peso e medidas</strong> — histórico semanal com gráfico de tendência de peso, cintura, quadril, braço e coxa.</p></div>
+        <div class="pdf-row"><div class="pdf-dot"></div><p><strong>Hábitos diários</strong> — média de hidratação, proteína consumida e frequência de check-ins no período.</p></div>
+        <div class="pdf-row"><div class="pdf-dot"></div><p><strong>Mapa de sintomas</strong> — frequência e intensidade de náusea, constipação, fadiga, falta de apetite e outros.</p></div>
+        <div class="pdf-row"><div class="pdf-dot"></div><p><strong>Evolução de humor</strong> — registro de bem-estar emocional ao longo das semanas.</p></div>
+        <div class="pdf-row"><div class="pdf-dot"></div><p><strong>Fotos de evolução</strong> — comparativo de frente, lado e costas com datas.</p></div>
+      </div>
+      <div class="pdf-sample">
+        <p>📊 Prévia — Semana 4</p>
+        <div class="pdf-sample-row"><span>Peso</span><strong>74,2 kg → 72,8 kg</strong></div>
+        <div class="pdf-sample-row"><span>Cintura</span><strong>86 cm → 83 cm</strong></div>
+        <div class="pdf-sample-row"><span>Média proteína/dia</span><strong>78g</strong></div>
+        <div class="pdf-sample-row"><span>Média água/dia</span><strong>1.650 ml</strong></div>
+        <div class="pdf-sample-row"><span>Sintoma mais freq.</span><strong>Náusea (3×/sem)</strong></div>
+        <div class="pdf-sample-row"><span>Check-ins realizados</span><strong>26 de 31 dias</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRO BENEFITS -->
+  <section class="pro-benefits">
+    <p class="section-tag">Por que indicar o Leve+</p>
+    <h2 class="section-title" style="color:var(--pro);">Você ganha tanto quanto sua paciente.</h2>
+    <div class="pro-grid">
+      <div class="pro-benefit-item">
+        <span class="pro-benefit-icon">⏱</span>
+        <div><h4>Consultas mais produtivas</h4><p>Sem perder 10 minutos reconstruindo o que aconteceu no mês. Os dados chegam organizados.</p></div>
+      </div>
+      <div class="pro-benefit-item">
+        <span class="pro-benefit-icon">📈</span>
+        <div><h4>Decisões mais embasadas</h4><p>Gráfico de peso, mapa de sintomas e hábitos te dão o quadro completo para ajustar o plano.</p></div>
+      </div>
+      <div class="pro-benefit-item">
+        <span class="pro-benefit-icon">🤝</span>
+        <div><h4>Paciente mais engajada</h4><p>Quem registra, mantém. Pacientes com o Leve+ chegam mais constantes e motivadas.</p></div>
+      </div>
+      <div class="pro-benefit-item">
+        <span class="pro-benefit-icon">🛡</span>
+        <div><h4>Sem conflito com seu trabalho</h4><p>O Leve+ não prescreve, não sugere doses e não substitui nenhum profissional. É uma ferramenta de apoio.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRO TESTIMONIALS -->
+  <section class="pro-proof">
+    <p class="section-tag">O que profissionais dizem</p>
+    <h2 class="section-title" style="color:var(--pro);">+320 profissionais já indicam.</h2>
+    <div class="pro-testi">
+      <div class="stars">⭐⭐⭐⭐⭐</div>
+      <p class="pro-testi-text">"Indico para todas as minhas pacientes em GLP-1. O relatório me poupa tempo e me dá dados que eu nunca teria de outra forma — principalmente o mapa de sintomas."</p>
+      <div class="pro-testi-author"><div class="pro-avatar">DS</div><div class="pro-testi-info"><p>Dra. Daniela S.</p><span>Endocrinologista · SP</span></div></div>
+    </div>
+    <div class="pro-testi">
+      <div class="stars">⭐⭐⭐⭐⭐</div>
+      <p class="pro-testi-text">"Minha paciente chegou com o PDF do Leve+ e consegui ajustar o plano alimentar com muito mais precisão. Ela tinha perdido 4cm de cintura que nem a balança mostrava."</p>
+      <div class="pro-testi-author"><div class="pro-avatar">RF</div><div class="pro-testi-info"><p>Renata F.</p><span>Nutricionista · RJ</span></div></div>
+    </div>
+    <div class="pro-testi">
+      <div class="stars">⭐⭐⭐⭐⭐</div>
+      <p class="pro-testi-text">"Pacientes que usam o Leve+ chegam mais engajadas, com mais consciência do processo. Faz diferença no resultado e na adesão ao treino."</p>
+      <div class="pro-testi-author"><div class="pro-avatar">MC</div><div class="pro-testi-info"><p>Marcos C.</p><span>Personal Trainer · BH</span></div></div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how-section">
+    <p class="section-tag">Como funciona na prática</p>
+    <h2 class="section-title" style="color:var(--pro);">Simples de indicar. Simples de usar.</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-line"></div>
+        <div class="step-num">1</div>
+        <div class="step-content"><h4>Você indica o Leve+ para a paciente</h4><p>Compartilhe o link do app. Ela cadastra em menos de 3 minutos, sem instalar nada.</p></div>
+      </div>
+      <div class="step">
+        <div class="step-line"></div>
+        <div class="step-num">2</div>
+        <div class="step-content"><h4>Ela registra a jornada diariamente</h4><p>Água, proteína, sintomas, medidas e fotos — tudo organizado no app.</p></div>
+      </div>
+      <div class="step">
+        <div class="step-line"></div>
+        <div class="step-num">3</div>
+        <div class="step-content"><h4>Antes da consulta, ela gera o PDF</h4><p>Um relatório completo do período é gerado em segundos e enviado para você.</p></div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content"><h4>Você atende com dados na mão</h4><p>Sem reconstruir o mês de memória. Com gráficos, médias e evolução real.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRO CTA -->
+  <section class="pro-cta-section">
+    <h2>Indique o Leve+ para suas pacientes.</h2>
+    <p>Sem custo para você. Sem conflito com seu trabalho. Só consultas mais produtivas.</p>
+    <button class="btn-pro" onclick="scrollToPricing()">Conhecer o plano da paciente →</button>
+    <p style="color:rgba(255,255,255,.45);font-size:12px;margin-top:12px;">Ou envie o link diretamente: leve.app</p>
+  </section>
+
+</div><!-- /profissional -->
+
+<!-- ===== PRICING ===== -->
+<section class="price-section" id="pricing">
+  <p class="section-tag">Plano Evolução</p>
+  <h2 class="section-title">Um plano. Valor para todas.</h2>
+  <p class="section-sub">A paciente assina. O profissional ganha dados. Todo mundo sai ganhando.</p>
+  <div class="price-card">
+    <div class="price-badge">🏷 Oferta de lançamento</div>
+    <div class="price-amount">
+      <span class="from">De R$ 39,90/mês</span>
+      <div><span class="val">R$ 19,90</span><span class="mo">/mês</span></div>
+      <span class="trial">✅ 7 dias grátis para começar</span>
+    </div>
+    <p class="price-for-label pac">🌿 Para a paciente</p>
+    <div class="price-items">
+      <div class="price-item"><div class="check">✓</div>Check-in diário completo</div>
+      <div class="price-item"><div class="check">✓</div>Registro de medidas corporais</div>
+      <div class="price-item"><div class="check">✓</div>Cofre de fotos privado</div>
+      <div class="price-item"><div class="check">✓</div>Receitas e treinos adaptados</div>
+      <div class="price-item"><div class="check">✓</div>Histórico ilimitado</div>
+    </div>
+    <div class="price-divider"></div>
+    <p class="price-for-label pro">🩺 Para o profissional</p>
+    <div class="price-items">
+      <div class="price-item"><div class="check check-pro">✓</div>Relatório PDF completo por período</div>
+      <div class="price-item"><div class="check check-pro">✓</div>Gráfico de peso e medidas</div>
+      <div class="price-item"><div class="check check-pro">✓</div>Mapa de sintomas detalhado</div>
+      <div class="price-item"><div class="check check-pro">✓</div>Evolução de hábitos e humor</div>
+      <div class="price-item"><div class="check check-pro">✓</div>Fotos antes &amp; depois organizadas</div>
+    </div>
+    <button class="btn-cta" onclick="window.scrollTo({top:0,behavior:'smooth'})">Começar 7 dias grátis →</button>
+    <p class="price-guarantee">🔒 Sem cobrança nos primeiros 7 dias · Cancele quando quiser</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-bg">
+  <p class="section-tag">Dúvidas frequentes</p>
+  <h2 class="section-title">Respondendo antes que você pergunte.</h2>
+  <div class="faq-list">
+    <div class="faq-item"><p class="faq-q">O Leve+ prescreve medicamentos ou doses?</p><p class="faq-a">Nunca. É uma ferramenta de organização pessoal. Não prescreve medicamentos, doses, dietas ou tratamentos. Sempre siga seu médico e nutricionista.</p></div>
+    <div class="faq-item"><p class="faq-q">Como o profissional recebe o relatório?</p><p class="faq-a">A paciente gera o PDF diretamente no app e envia por WhatsApp, e-mail ou como preferir — antes da consulta.</p></div>
+    <div class="faq-item"><p class="faq-q">Funciona para qualquer GLP-1?</p><p class="faq-a">Sim. Ozempic, Wegovy, Mounjaro, Saxenda e qualquer outro GLP-1 ou suplemento similar.</p></div>
+    <div class="faq-item"><p class="faq-q">As fotos ficam seguras?</p><p class="faq-a">Sim. As fotos do cofre são privadas, acessíveis apenas pela paciente. Nenhum dado é compartilhado sem autorização.</p></div>
+    <div class="faq-item"><p class="faq-q">Precisa instalar algo?</p><p class="faq-a">Não. O Leve+ é um PWA — funciona direto no navegador do celular como um app nativo, sem loja de apps.</p></div>
+    <div class="faq-item"><p class="faq-q">O profissional paga para indicar?</p><p class="faq-a">Não. O profissional indica gratuitamente. Apenas a paciente assina o plano.</p></div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <h2>Sua jornada merece mais do que uma planilha.</h2>
+  <p>+4.200 mulheres e 320 profissionais já fazem parte do Leve+. Comece hoje — 7 dias grátis.</p>
+  <button class="btn-inv" onclick="window.scrollTo({top:0,behavior:'smooth'})">Começar agora, grátis →</button>
+  <p style="color:rgba(255,255,255,.4);font-size:12px;margin-top:12px;">Sem cartão de crédito · Cancele quando quiser</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-logo">🌿 Leve+</p>
+  <p>O Leve+ é uma ferramenta de organização pessoal e acompanhamento de rotina. Não prescreve medicamentos, doses, dietas, treinos ou tratamentos. Sempre siga a orientação do seu médico, nutricionista ou profissional de saúde.</p>
+  <p style="margin-top:10px;"><a href="#">Privacidade</a> · <a href="#">Termos</a> · <a href="#">Contato</a></p>
+  <p style="margin-top:6px;">© 2025 Leve+</p>
+</footer>
+
+<!-- STICKY -->
+<div class="sticky-cta" id="stickyCta">
+  <button class="btn-cta" onclick="window.scrollTo({top:0,behavior:'smooth'})">Começar 7 dias grátis →</button>
+</div>
+
+<script>
+function scrollToPricing(){document.getElementById('pricing').scrollIntoView({behavior:'smooth'});}
+function scrollTo(id){document.getElementById(id).scrollIntoView({behavior:'smooth'});}
+window.addEventListener('scroll',()=>{
+  document.getElementById('stickyCta').classList.toggle('visible',window.scrollY>500);
+});
+</script>
+</body>
+</html>
