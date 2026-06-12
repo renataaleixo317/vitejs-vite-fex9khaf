@@ -29,7 +29,6 @@ const calcConsistency = uid => { const done=last30().filter(d=>DB.get("daily_log
 const C = {mint:"#A8D5BA",emerald:"#2D6A4F",nude:"#F5EDE3",rose:"#F2B5C0",white:"#fff",bg:"#F9F6F2",text:"#2C2C2C",muted:"#8A8A8A",pro:"#1E3A5F",proLight:"#EEF4FF",proMid:"#C7D9F5",proAccent:"#3B7DD8",amber:"#F59E0B",amberLight:"#FEF3C7"};
 const PRICE="12,90";
 const KIWIFY_URL="https://pay.kiwify.com.br/sPHFZoC";
-const KIWIFY_URL="https://pay.kiwify.com.br/sPHFZoC";
 const goKiwify = () => window.open(KIWIFY_URL, "_blank");
 
 const RECIPES=[
