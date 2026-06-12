@@ -29,9 +29,7 @@ const calcConsistency = uid => { const done=last30().filter(d=>DB.get("daily_log
 const C = {mint:"#A8D5BA",emerald:"#2D6A4F",nude:"#F5EDE3",rose:"#F2B5C0",white:"#fff",bg:"#F9F6F2",text:"#2C2C2C",muted:"#8A8A8A",pro:"#1E3A5F",proLight:"#EEF4FF",proMid:"#C7D9F5",proAccent:"#3B7DD8",amber:"#F59E0B",amberLight:"#FEF3C7"};
 const PRICE="12,90";
 const KIWIFY_URL="https://pay.kiwify.com.br/sPHFZoC";
-const KIWIFY_URL="https://pay.kiwify.com.br/sPHFZoC";
 const goKiwify = () => window.open(KIWIFY_URL, "_blank");
-
 const RECIPES=[
   {id:1,cat:"Alta Proteína",name:"Bowl de Frango com Quinoa",kcal:420,prot:38,time:"25min",emoji:"🍗",steps:["Cozinhe 80g de quinoa em água com sal.","Grelhe 150g de frango temperado com ervas.","Monte o bowl com folhas verdes e tomate cereja.","Finalize com fio de azeite, chia e limão."]},
   {id:2,cat:"Alta Proteína",name:"Omelete de Claras com Espinafre",kcal:180,prot:24,time:"10min",emoji:"🥚",steps:["Bata 4 claras com pitada de sal e pimenta.","Refogue espinafre com alho e azeite.","Despeje as claras sobre o espinafre.","Cozinhe em fogo baixo, dobre ao meio e sirva."]},
